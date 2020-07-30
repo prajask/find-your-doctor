@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prajas Kadepurkar">
+
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'css/style.css' ) }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>Patient History</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        {% for appointment in patient_history %}
+            <div class="appointment-details">
+
+                <div class="logo">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Find Your Doctor</span>
+                </div>
+
+                <hr>
+                <p class="block-title">Appointement</p>
+                <div class="block">
+                    <div>
+                        <span>ID: </span>
+                        {{appointment["id"]}}
+                    </div>
+            
+                    <div>
+                        <span>Date: </span>
+                        {{appointment["date"]}}
+                    </div>
+                    
+                    <div>
+                        <span>Time: </span>
+                        {{appointment["time"]}}
+                    </div>
+
+                    <div>
+                        <span>Status: </span>
+                        {{appointment["status"]}}
+                    </div>
+                </div>
+            
+                <hr>
+                <p class="block-title">Patient</p>
+                <div class="block">
+                    <div>
+                        <span>ID: </span>
+                        {{appointment["patient"]["id"]}}
+                    </div>
+            
+                    <div>
+                        <span>Name: </span>
+                        {{appointment["patient"]["first_name"]}} {{appointment["patient"]["last_name"]}}
+                    </div>
+            
+                    <div>
+                        <span>Phone: </span>
+                        {{appointment["patient"]["phone_number"]}}
+                    </div>
+                </div>
+
+                <hr>
+                <p class="block-title">Doctor</p>
+                <div class="block">
+                    <div>
+                        <span>Name: </span>
+                        Dr. {{appointment["doctor"]["first_name"]}} {{appointment["doctor"]["last_name"]}}
+                    </div>
+            
+                    <div>
+                        <span>Phone: </span>
+                        {{appointment["doctor"]["phone_number"]}}
+                    </div>
+                </div>
+            
+                <hr>
+                {% if appointment["has_report"] %}
+                    <p class="block-title">Report</p>
+
+                    <div>
+                        <form id="report-form">
+                            <span class="input-label">Red Blood Cell Count</span>
+                            <div class="input-field no-icon">
+                                <input type="text" name="red_blood_cell_count" id="red_blood_cell_count" disabled
+                                value="{{ appointment['report']['red_blood_cell_count'] if appointment['report']['report_status'] else '' }}"/>
+                            </div>
+
+                            <span class="input-label">White Blood Cell Count</span>
+                            <div class="input-field no-icon">
+                                <input type="text" name="white_blood_cell_count" id="white_blood_cell_count" disabled
+                                value="{{ appointment['report']['white_blood_cell_count'] if appointment['report']['report_status'] else '' }}"/>
+                            </div>
+
+                            <span class="input-label">Sugar Level</span>
+                            <div class="input-field no-icon">
+                                <input type="text" name="sugar_level" id="sugar_level" disabled
+                                value="{{ appointment['report']['sugar_level'] if appointment['report']['report_status'] else '' }}"/>
+                            </div>
+                        </form>
+
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prajas Kadepurkar">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>Find Your Doctor | {{ title }}</title>
+</head>
+
+<body>
+
+    {% block body %}
+    {% endblock %}
+
+    <script src="{{ url_for( 'static', filename = 'js/input_visuals.js' ) }}" ></script>
+
+    {% if title == "Register" %}
+        <script src="{{ url_for( 'static', filename = 'js/auth/register/actions.js' ) }}"></script>
+        <script src="{{ url_for( 'static', filename = 'js/auth/register/form_fields_and_validators.js' ) }}" ></script>
+        <script src="{{ url_for( 'static', filename = 'js/auth/form_validation.js' ) }}"></script>
+    {% endif %}
+
+    {% if title == "Update Password" %}
+        <script src="{{ url_for( 'static', filename = 'js/auth/update_password/form_fields_and_validators.js' ) }}" ></script>
+        <script src="{{ url_for( 'static', filename = 'js/auth/form_validation.js' ) }}"></script>
+    {% endif %}
+</body>
+</html>

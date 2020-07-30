@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prajas Kadepurkar">
+
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'css/style.css' ) }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>Appointment Details</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="appointment-details">
+
+            <div class="logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>Find Your Doctor</span>
+            </div>
+
+            <hr>
+            <p class="block-title">Appointement</p>
+            <div class="block">
+                <div>
+                    <span>ID: </span>
+                    {{appointment_information["id"]}}
+                </div>
+        
+                <div>
+                    <span>Date: </span>
+                    {{appointment_information["date"]}}
+                </div>
+                
+                <div>
+                    <span>Time: </span>
+                    {{appointment_information["time"]}}
+                </div>
+
+                <div>
+                    <span>Status: </span>
+                    {{appointment_information["status"]}}
+                </div>
+            </div>
+        
+            <hr>
+            <p class="block-title">Patient</p>
+            <div class="block">
+                <div>
+                    <span>ID: </span>
+                    {{appointment_information["patient"]["id"]}}
+                </div>
+        
+                <div>
+                    <span>Name: </span>
+                    {{appointment_information["patient"]["first_name"]}} {{appointment_information["patient"]["last_name"]}}
+                </div>
+        
+                <div>
+                    <span>Phone: </span>
+                    {{appointment_information["patient"]["phone_number"]}}
+                </div>
+        
+                <a href="/doctor/patient_history/{{appointment_information['patient']['id']}}", target="_blank">
+                    <span>View Patient History</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <hr>
+            <p class="block-title">Doctor</p>
+            <div class="block">
+                <div>
+                    <span>Name: </span>
+                    Dr. {{session["user"]["first_name"]}} {{session["user"]["last_name"]}}
+                </div>
+        
+                <div>
+                    <span>Phone: </span>
+                    {{session["user"]["phone_number"]}}
+                </div>
+            </div>
+        
+            <hr>
+            {% if appointment_information["has_report"] %}
+                <p class="block-title">Report</p>
+
+                {% if appointment_information["status"] == "pending" %}
+                    <div class="actions">
+                        <div>
+                            <input type="radio" class="report-option" name="report-options" id="complete_now" value="complete_now" checked>
+                            <label for="complete_now">Complete Now</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" class="report-option" name="report-options" id="complete_later" value="complete_later">
+                            <label for="complete_later">Complete Later</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" class="report-option" name="report-options" id="no_report" value="no_report">
+                            <label for="no_report">No Report</label>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div>
+                    <form id="report-form" action="/doctor/complete_appointment/{{appointment_information['id']}}" method="POST">
+                        <span class="input-label">Red Blood Cell Count</span>
+                        <div class="input-field no-icon">
+                            <input type="text" name="red_blood_cell_count" id="red_blood_cell_count"
+                            value="{{ appointment_information['report']['red_blood_cell_count'] if appointment_information['report']['report_status'] else '' }}"/>
+                        </div>
+
+                        <span class="helper-text" id="red-blood-cell-count-helper" style="display: none;">
+                            Invalid Input.
+                        </span>
+
+                        <span class="input-label">White Blood Cell Count</span>
+                        <div class="input-field no-icon">
+                            <input type="text" name="white_blood_cell_count" id="white_blood_cell_count"
+                            value="{{ appointment_information['report']['white_blood_cell_count'] if appointment_information['report']['report_status'] else '' }}"/>
+                        </div>
+
+                        <span class="helper-text" id="white-blood-cell-count-helper" style="display: none;">
+                            Invalid Input.
+                        </span>
+
+                        <span class="input-label">Sugar Level</span>
+                        <div class="input-field no-icon">
+                            <input type="text" name="sugar_level" id="sugar_level"
+                            value="{{ appointment_information['report']['sugar_level'] if appointment_information['report']['report_status'] else '' }}"/>
+                        </div>
+
+                        <span class="helper-text" id="sugar-level-helper" style="display: none;">
+                            Invalid Input
+                        </span>
+                    </form>
+
+                </div>
+            {% endif %}
+            
+            {% if appointment_information["status"] == "pending" %}
+                <button id="complete-appointment">Complete</button>
+            
+            {% else %}
+                {% if appointment_information["has_report"] %}
+                    <button id="update-appointment">Update</button>
+                {% endif %}
+                    
+            {% endif %}
+        </div>
+
+    </div>
+
+    <script src="{{ url_for( 'static', filename = 'js/input_visuals.js' ) }}"></script>
+    <script src="{{ url_for( 'static', filename = 'js/doctor/actions.js' ) }}"></script>
+
+</body>
+</html>

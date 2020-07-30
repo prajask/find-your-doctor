@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prajas Kadepurkar">
+
+    <link rel="stylesheet" href="{{url_for( 'static', filename = 'css/style.css' )}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>Dr. {{ session["user"]["first_name"] }}</title>
+</head>
+
+<body>
+
+    <div class="unverified-container">
+        <div class="head" style="color: #00c853;">
+            <i class="far fa-check-circle"></i>
+            <span>Registration Request Successful</span>
+        </div>
+
+        <div class="body">
+            <ul>
+                <li>Our admin team will be verifying your details.</li>
+                <li>You will be able to user your account upon approval from the Admin Team.</li>
+                <li>It normally takes 2 - 3 Business Days to complete this process.</li>
+            </ul>
+        </div>
+
+        <a href="{{url_for('auth.logout')}}" class="button">Logout</a>
+    </div>
+
+</body>
+</html>

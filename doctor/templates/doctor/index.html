@@ -1,0 +1,34 @@
+{% extends "doctor/base.html" %}
+{% set title = "Dr. " + session["user"]["first_name"] + " | Appointments" %}
+{% set active = "appointments" %}
+
+{% block body %}
+
+    <div class="appointments">
+        
+        {% for appointment in appointments %}
+        
+            <div class="appointment-card {{ 'pending' if appointment['status'] == 'pending' else 'completed' }} {{ 'today' if appointment['today'] else '' }}" id="{{ appointment['id'] }}">
+
+                <div class="name">
+                    <i class="far fa-user"></i>
+                    <span>{{ appointment["patient"]["first_name"] }} {{ appointment["patient"]["last_name"] }}</span>
+                </div>
+
+                <div>
+                    <i class="far fa-calendar"></i>
+                    <span>{{ appointment["date"] }}</span>
+                </div>
+
+                <div>
+                    <i class="far fa-clock"></i>
+                    <span>{{ appointment["time"] }}</span>
+                </div>
+            </div>
+            
+        {% endfor %}
+
+    </div>
+
+    <script src="{{ url_for('static', filename = 'js/doctor/actions.js') }}"></script>
+{% endblock %}

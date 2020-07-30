@@ -1,0 +1,64 @@
+{% extends "patient/base.html" %}
+{% set title = "Book Appointment" %}
+
+{% block body %}
+
+    <div class="doctors">
+        {% for doctor in doctors %}
+
+            <div class="doctor-card" id="{{doctor['id']}}">
+                <div>
+                    <i class="fas fa-user"></i>
+                    <span>Dr. {{doctor["first_name"]}} {{doctor["last_name"]}}</span>
+                </div>
+
+                <div>
+                    <i class="fas fa-award"></i>
+                    <span>
+                        {% for degree in doctor["degrees"] %}
+                            {{degree}}. 
+                        {% endfor %}
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <span>{{doctor["phone_number"]}}</span>
+                </div>
+
+                <button class="modal-trigger">Book Appointment</button>
+            </div>
+
+        {% endfor %}
+    </div>
+
+    <div class="datetime-modal">
+        <form id="appointment-datetime" method="POST">
+            <div class="input-field">
+                <i class="far fa-calendar"></i>
+                <input type="date" name="date" id="date">
+            </div>
+
+            <div class="input-field">
+                <i class="far fa-clock"></i>
+                <select name="time" id="time">
+                    <option value="9" selected>09 : 00</option>
+                    <option value="10">10 : 00</option>
+                    <option value="11">11 : 00</option>
+                    <option value="12">12 : 00</option>
+                    <option value="13">13 : 00</option>
+                    <option value="14">14 : 00</option>
+                    <option value="15">15 : 00</option>
+                    <option value="16">16 : 00</option>
+                    <option value="17">17 : 00</option>
+                    <option value="18">18 : 00</option>
+                </select>
+            </div>
+
+            <button>Book Now</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for( 'static', filename = 'js/patient/actions.js' ) }}"></script>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "auth/base.html" %}
+{% set title = "Register" %}
+
+{% block body %}
+
+    <div class="register-form-container">
+        <form action="/register" method="POST" id="registration-form">
+
+            <div class="input-field no-icon">
+                <input type="first_name" name="first_name" id="first_name"  placeholder="First Name" autocomplete="off" required/>
+            </div>
+            <span class="helper-text" id="first-name-helper" style="display: none;">
+                First Name must be atleast 2 Characters Long.
+            </span>
+
+            <div class="input-field no-icon">
+                <input type="last_name" name="last_name" id="last_name"  placeholder="Last Name" autocomplete="off" required/>
+            </div>
+            <span class="helper-text" id="last-name-helper" style="display: none;">
+                Last Name must be atleast 2 Characters Long.
+            </span>
+
+            <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" id="email"  placeholder="Email Id" autocomplete="off" required/>
+            </div>
+            <span class="helper-text" id="email-helper" style="display: none;">
+                Invalid Email Id.
+            </span>
+            {% if error and error == "email_error" %}
+                <span class="helper-text" id="email-error">
+                    Email Already Registered.
+                </span>
+            {% endif %}
+
+            <div class="input-field">
+                <i class="fas fa-phone"></i>
+                <input type="text" name="phone_number" id="phone_number"  placeholder="Phone Number" autocomplete="off" required/>
+            </div>
+            <span class="helper-text" id="phone-number-helper" style="display: none;">
+                Invalid Phone Number.
+            </span>
+            {% if error and error == "phone_number_error" %}
+                <span class="helper-text" id="phone-number-error">
+                    Phone Number Already Registered.
+                </span>
+            {% endif %}
+
+            <div class="input-field">
+                <i class="fas fa-key"></i>
+                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required/>
+            </div>
+            <span class="helper-text" id="password-helper">
+                Password must be atleast 8 Characters Long and must contain 1 Lower Case Alphabet, 1 Upper Case Alphabet, 1 Number and 1 Symbol.
+            </span>
+
+            <div class="input-field">
+                <i class="fas fa-key"></i>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" autocomplete="off" required/>
+            </div>
+            <span class="helper-text" id="confirm-password-helper" style="display: none;">
+                Passwords do not match.
+            </span>
+
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <select name="user_type" id="user_type" onchange="toggle_user_type()">
+                    <option value="" disabled selected>Select User Type</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+            </div>
+            <span class="helper-text" id="user-type-helper" style="display: none;">
+                Select User Type.
+            </span>
+
+            <div class="input-field" style="display: none;">
+                <i class="fas fa-user"></i>
+                <input type="text" name="government_id" id="government_id" placeholder="Government Registration ID" autocomplete="off">
+            </div>
+            <span class="helper-text" id="government-id-helper" style="display: none;">
+                Invalid ID.
+            </span>
+            {% if error and error == "government_id_error" %}
+                <span class="helper-text" id="government-id-error">
+                    Government ID Already Registered.
+                </span>
+            {% endif %}
+
+            <div class="input-field no-icon checkbox-field" style="display: none;">
+                {% for degree in degrees %}
+
+                    <input type="checkbox" name="degree" value="{{ degree['id'] }}"> {{ degree["name"] }}
+
+                {% endfor %}
+            </div>
+            <span class="helper-text" id="degree-helper" style="display: none;">Select One or More Applicable Degrees.</span>
+
+            <button type="button" onclick="validate_registration_form()">Register</button>
+
+            <a href="{{ url_for('auth.login') }}" class="login">Already a member ? Login Here !</a>
+        </form>
+    </div>
+
+{% endblock %}

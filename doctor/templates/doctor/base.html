@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prajas Kadepurkar">
+
+    <link rel="stylesheet" href="{{url_for( 'static', filename = 'css/style.css' )}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>{{ title }}</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>Find Your Doctor</span>
+            </div>
+
+            <ul class="left-nav">
+
+                <li class="user">
+                    <i class="fas fa-user-circle" class="user-options-trigger"></i>
+
+                    <div class="user-options">
+                        <a href="{{ url_for('auth.update_password') }}">Change Password</a>
+                        <a href="{{ url_for('auth.logout') }}">Logout</a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <script>
+        document.querySelector(".logo").onclick = function(){
+            window.location = "{{url_for('doctor.index')}}";
+        }
+    </script>
+</body>
+</html>

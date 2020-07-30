@@ -1,0 +1,55 @@
+{% extends "patient/base.html" %}
+{% set title = session["user"]["first_name"] + ' ' + session["user"]["last_name"] + " | Appointments" %}
+
+{% block body %}
+
+    <div class="appointments">
+
+        <div class="appointment-card completed" id="booking-successful" style="box-shadow: none; display: none;">
+            <div>
+                <i class="fas fa-check-circle"></i>
+                <span>Appointment Booked</span>
+            </div>
+        </div>
+
+        <div class="appointment-card new-appointment" id="new_appointment">
+            <i class="fas fa-plus"></i>
+        </div>
+            
+        {% for appointment in appointments %}
+
+            <div class="appointment-card {{ 'pending' if appointment['status'] == 'pending' else 'completed' }} {{ 'today' if appointment['today'] else '' }}" id="{{ appointment['id'] }}">
+
+                <div class="name">
+                    <i class="far fa-user"></i>
+                    <span>Dr. {{ appointment["doctor"]["first_name"] }}</span>
+                </div>
+
+                <div>
+                    <i class="far fa-calendar"></i>
+                    <span>{{ appointment["date"] }}</span>
+                </div>
+
+                <div>
+                    <i class="far fa-clock"></i>
+                    <span>{{ appointment["time"] }}</span>
+                </div>
+            </div>
+            
+        {% endfor %}
+
+    </div>
+
+    {% if booking_successful %}
+        <script>
+            booking_successful_card = document.querySelector("#booking-successful");
+            booking_successful_card.style.display = "flex";
+            setTimeout(
+                () => booking_successful_card.style.display = "none",
+                1000
+            );
+        </script>
+    {% endif %}
+    <script src="{{ url_for('static', filename = 'js/patient/actions.js') }}"></script>
+
+{% endblock %}

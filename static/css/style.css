@@ -1,0 +1,585 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: #1e88e5;
+}
+
+a:visited {
+  color: #1e88e5;
+}
+
+.login-form-container, .register-form-container, .unverified-container {
+  position: absolute;
+  left: 50%;
+  width: 25%;
+  border-radius: 10px;
+  background: white;
+  -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-form-container .input-field, .register-form-container .input-field, .unverified-container .input-field {
+  margin-top: 10%;
+}
+
+.login-form-container a, .register-form-container a, .unverified-container a {
+  margin: 5% 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+}
+
+.login-form-container .register, .login-form-container .login, .register-form-container .register, .register-form-container .login, .unverified-container .register, .unverified-container .login {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-form-container, .unverified-container {
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.login-form-container .head, .unverified-container .head {
+  width: 90%;
+  margin: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 25px;
+}
+
+.login-form-container .head i, .unverified-container .head i {
+  padding-right: 20px;
+}
+
+.login-form-container .forgot-password, .unverified-container .forgot-password {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 10%;
+}
+
+.register-form-container {
+  margin: 15px 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.register-form-container button {
+  margin-top: 10%;
+}
+
+.input-field {
+  position: relative;
+  margin-left: 10%;
+  width: 80%;
+  height: 40px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  border: 1px solid #35424a;
+}
+
+.input-field i {
+  padding: 20px;
+}
+
+.input-field input, .input-field select {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.checkbox-field {
+  height: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  row-gap: 20px;
+  border: none;
+}
+
+.no-icon input {
+  padding: 15px;
+}
+
+.helper-text, .input-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 10%;
+  width: 80%;
+  text-align: justify;
+  font-size: 13px;
+  font-weight: bold;
+  color: #e53935;
+}
+
+button, a.button {
+  width: 80%;
+  height: 40px;
+  margin: 5% 10%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  background: #e8491d;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+a.button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+  font-size: 16px;
+}
+
+.unverified-container {
+  width: 30%;
+}
+
+.unverified-container .body {
+  width: 80%;
+  margin: 0 10%;
+}
+
+.unverified-container .body ul {
+  list-style: none;
+}
+
+.unverified-container .body ul li {
+  font-size: 18px;
+  line-height: 1.5em;
+  margin-bottom: 5%;
+}
+
+.container {
+  width: 60%;
+  margin-left: 20%;
+}
+
+.navbar {
+  position: relative;
+  width: 100%;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navbar i {
+  font-size: 30px;
+}
+
+.navbar .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.navbar .logo i {
+  padding-right: 10px;
+  color: #e8491d;
+}
+
+.navbar .logo span {
+  color: #35424a;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 40px;
+}
+
+.navbar ul li {
+  position: relative;
+  padding: 10px;
+}
+
+.navbar ul li a, .navbar ul li .user-options-trigger {
+  font-size: 16px;
+  color: #35424a;
+}
+
+.navbar ul li a.active, .navbar ul li .user-options-trigger.active {
+  font-weight: bold;
+  color: #e8491d;
+}
+
+.navbar ul li a:hover, .navbar ul li .user-options-trigger:hover {
+  font-weight: bold;
+  color: #e8491d;
+}
+
+.navbar ul li.user {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.navbar ul li.user i {
+  color: #35424a;
+}
+
+.navbar ul li.user:hover .user-options {
+  display: block;
+}
+
+.navbar ul .user-options {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 200px;
+  border-radius: 10px;
+  z-index: 1;
+  background: #eeeeee;
+  -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul .user-options a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  padding: 10px 10px;
+}
+
+.navbar ul .user-options a:hover {
+  color: white;
+  background: #35424a;
+}
+
+.appointments {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.appointments .appointment-card {
+  margin: 20px 0;
+  padding: 10px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.appointments .appointment-card:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.appointments .appointment-card div {
+  width: 33%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: bold;
+}
+
+.appointments .appointment-card i {
+  font-size: 20px;
+  padding: 10px;
+}
+
+.appointments .appointment-card.pending {
+  background: #fffde7;
+}
+
+.appointments .appointment-card.completed {
+  background: #e8f5e9;
+}
+
+.appointments .appointment-card.new-appointment {
+  background: #e1f5fe;
+}
+
+.appointment-details {
+  margin: 5% 0;
+  padding: 5% 10%;
+  -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: white;
+}
+
+.appointment-details .logo {
+  font-size: 30px;
+  margin-bottom: 5%;
+}
+
+.appointment-details .logo i {
+  color: #e8491d;
+  padding-right: 10px;
+}
+
+.appointment-details .logo span {
+  font-weight: bold;
+  color: #35424a;
+}
+
+.appointment-details .block-title {
+  margin: 2.5% 10%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #35424a;
+}
+
+.appointment-details .block {
+  width: 80%;
+  margin: 2.5% 10%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  row-gap: 2.5vh;
+  -webkit-column-gap: 5%;
+          column-gap: 5%;
+}
+
+.appointment-details .block div span {
+  font-weight: bold;
+}
+
+.appointment-details .block a i {
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.appointment-details .block a:hover i {
+  padding-left: 5px;
+}
+
+.appointment-details .actions {
+  width: 80%;
+  margin-left: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.appointment-details .input-label {
+  color: #35424a;
+  margin-top: 5%;
+  margin-bottom: 5px;
+}
+
+.doctors {
+  margin: 5% 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  row-gap: 10%;
+  -webkit-column-gap: 5%;
+          column-gap: 5%;
+}
+
+.doctors .doctor-card {
+  padding: 10px;
+  border-radius: 5px;
+  background: white;
+  -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.doctors .doctor-card div {
+  width: 80%;
+  margin: 5% 10%;
+}
+
+.doctors .doctor-card div i {
+  padding-right: 10px;
+}
+
+.datetime-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.datetime-modal form {
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 50vh;
+  padding-top: 1px;
+  border-radius: 5px;
+  background-color: white;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.datetime-modal form .input-field {
+  margin-top: 5%;
+}
+
+@media (max-width: 600px) {
+  .login-form-container, .register-form-container, .unverified-container {
+    width: 85%;
+    height: auto;
+  }
+  .register-form-container {
+    margin-top: 10%;
+  }
+  .container {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .appointment-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .appointment-card div {
+    display: block !important;
+    width: 80% !important;
+    margin-left: 10%;
+  }
+  .appointment-details .logo {
+    font-size: 25px;
+  }
+  .appointment-details .block-title {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+  }
+  .appointment-details .block {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+    row-gap: 2.5vh;
+  }
+  .appointment-details .actions {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .appointment-details .actions input {
+    margin-bottom: 2.5vh;
+  }
+  .doctors {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    row-gap: 5%;
+  }
+  .datetime-modal form {
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+/*# sourceMappingURL=style.css.map */

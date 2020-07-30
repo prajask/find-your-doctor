@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prajas Kadepurkar">
+
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'css/style.css' ) }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <title>Appointment Details</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="appointment-details">
+
+            <div class="logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>Find Your Doctor</span>
+            </div>
+
+            <hr>
+            <p class="block-title">Appointement</p>
+            <div class="block">
+                <div>
+                    <span>ID: </span>
+                    {{appointment_information["id"]}}
+                </div>
+        
+                <div>
+                    <span>Date: </span>
+                    {{appointment_information["date"]}}
+                </div>
+                
+                <div>
+                    <span>Time: </span>
+                    {{appointment_information["time"]}}
+                </div>
+
+                <div>
+                    <span>Status: </span>
+                    {{appointment_information["status"]}}
+                </div>
+            </div>
+        
+            <hr>
+            <p class="block-title">Patient</p>
+            <div class="block">
+                <div>
+                    <span>Name: </span>
+                    {{session["user"]["first_name"]}} {{session["user"]["last_name"]}}
+                </div>
+        
+                <div>
+                    <span>Phone: </span>
+                    {{session["user"]["phone_number"]}}
+                </div>
+            </div>
+
+            <hr>
+            <p class="block-title">Doctor</p>
+            <div class="block">
+                <div>
+                    <span>ID: </span>
+                    {{appointment_information["doctor"]["id"]}}
+                </div>
+                <div>
+                    <span>Name: </span>
+                    Dr. {{appointment_information["doctor"]["first_name"]}} {{appointment_information["doctor"]["last_name"]}}
+                </div>
+        
+                <div>
+                    <span>Phone: </span>
+                    {{session["user"]["phone_number"]}}
+                </div>
+            </div>
+        
+            <hr>
+            <p class="block-title">Report</p>
+
+            {% if appointment_information["has_report"] %}
+
+                {% if appointment_information["report"]["report_status"]  %}
+                
+                    <div>
+                        <form id="report-form" action="/doctor/complete_appointment/{{appointment_information['id']}}" method="POST">
+                            <span class="input-label">Red Blood Cell Count</span>
+                            <div class="input-field no-icon">
+                                <input type="text" name="red_blood_cell_count" id="red_blood_cell_count" disabled
+                                value="{{ appointment_information['report']['red_blood_cell_count'] if appointment_information['report']['report_status'] else '' }}"/>
+                            </div>
+
+                            <span class="input-label">White Blood Cell Count</span>
+                            <div class="input-field no-icon">
+                                <input type="text" name="white_blood_cell_count" id="white_blood_cell_count" disabled
+                                value="{{ appointment_information['report']['white_blood_cell_count'] if appointment_information['report']['report_status'] else '' }}"/>
+                            </div>
+
+                            <span class="input-label">Sugar Level</span>
+                            <div class="input-field no-icon">
+                                <input type="text" name="sugar_level" id="sugar_level" disabled
+                                value="{{ appointment_information['report']['sugar_level'] if appointment_information['report']['report_status'] else '' }}"/>
+                            </div>
+                        </form>
+                    </div>
+                
+                {% else %}
+                    <span class="helper-text">Report Pending!</span>    
+
+                {% endif %}
+            
+            {% else %}
+                <span class="helper-text">This Appointment has No Report!</span>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <script src="{{ url_for( 'static', filename = 'js/input_visuals.js' ) }}"></script>
+    <script src="{{ url_for( 'static', filename = 'js/doctor/actions.js' ) }}"></script>
+
+</body>
+</html>
