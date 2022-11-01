@@ -3,35 +3,37 @@
 
 {% block body %}
 
-    <div class="login-form-container">
-        <div class="head" style="font-weight: bold;">
-            <i class="fas fa-stethoscope" style="color: #e8491d; font-size: 40px;"></i>
-            <span style="color: #35424a">Find Your Doctor</span>
+<div class="login-form-container">
+    <div class="head" style="font-weight: bold;">
+        <i class="fas fa-stethoscope" style="color: #e8491d; font-size: 40px;"></i>
+        <span style="color: #35424a">Find Your Doctor</span>
+    </div>
+
+    <form action="" method="POST">
+        {% if error %}
+        <span class="helper-text" id="invalid-credentials" style="margin-top: 5%; margin-bottom: 0;">
+            Invalid Email or Password.
+        </span>
+        {% endif %}
+
+        <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <label for="email" style="display: none;">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email Id" autocomplete="off" required />
         </div>
 
-        <form action="" method="POST">
-            {% if error %}
-                <span class="helper-text" id="invalid-credentials" style="margin-top: 5%; margin-bottom: 0;">
-                    Invalid Email or Password.
-                </span>
-            {% endif %}
+        <div class="input-field">
+            <i class="fas fa-key"></i>
+            <label for="password" style="display: none;">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required />
+        </div>
 
-            <div class="input-field">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" id="email"  placeholder="Email Id" autocomplete="off" required/>
-            </div>
+        <a href="{{ url_for('auth.update_password') }}" class="forgot-password">Forgot Password ?</a>
 
-            <div class="input-field">
-                <i class="fas fa-key"></i>
-                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required/>
-            </div>
+        <button type="submit">Login</button>
 
-            <a href="{{ url_for('auth.update_password') }}" class="forgot-password">Forgot Password ?</a>
-
-            <button type = "submit">Login</button>
-
-            <a href="/register" class="register">Not a member ? Register Here !</a>
-        </form>
-    </div>
+        <a href="/register" class="register">Not a member ? Register Here !</a>
+    </form>
+</div>
 
 {% endblock %}

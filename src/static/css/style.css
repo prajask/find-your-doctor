@@ -7,17 +7,17 @@
 }
 
 body {
-  background: #f4f4f4;
+  background: #fafafa;
   min-height: 100vh;
 }
 
 a {
   text-decoration: none;
-  color: #1e88e5;
+  color: #005cb2;
 }
 
 a:visited {
-  color: #1e88e5;
+  color: #005cb2;
 }
 
 .login-form-container, .register-form-container, .unverified-container {
@@ -154,7 +154,7 @@ button, a.button {
   border-radius: 5px;
   cursor: pointer;
   outline: none;
-  background: #e8491d;
+  background: #c13510;
   color: white;
   font-size: 16px;
   font-weight: bold;
